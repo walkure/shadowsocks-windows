@@ -387,7 +387,18 @@ namespace Shadowsocks.Controller
                 if (!parsed)
                 {
                     IPHostEntry ipHostInfo = Dns.GetHostEntry(serverHost);
-                    ipAddress = ipHostInfo.AddressList[0];
+                    foreach (var ip in ipHostInfo.AddressList)
+                    {
+                        if (ip.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            ipAddress = ip;
+                            break;
+                        }
+                    }
+                }
+                if(ipAddress == null)
+                {
+                    throw new Exception("Cannot get IPv4 address:" + serverHost);
                 }
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, server.proxy == "" ? server.server_port : server.proxy_port);
 
