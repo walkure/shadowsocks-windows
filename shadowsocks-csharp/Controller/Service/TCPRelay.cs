@@ -106,7 +106,9 @@ namespace Shadowsocks.Controller
         private byte[] connetionRecvBuffer = new byte[RecvSize];
         // connection send buffer
         private byte[] connetionSendBuffer = new byte[BufferSize];
-        // Received data string.
+        // Received HTTP proxy message string.
+        byte[] bytesHTTPReceived = new byte[1024];
+        StringBuilder sbHTTPReceived = new StringBuilder();
 
         private bool connectionShutdown = false;
         private bool remoteShutdown = false;
@@ -379,14 +381,15 @@ namespace Shadowsocks.Controller
                 CreateRemote();
 
                 // TODO async resolving
-                IPAddress ipAddress;
-                bool parsed = IPAddress.TryParse(server.server, out ipAddress);
+                IPAddress ipAddress = null;
+                string serverHost = server.proxy == "" ? server.server : server.proxy;
+                bool parsed = IPAddress.TryParse(serverHost, out ipAddress);
                 if (!parsed)
                 {
-                    IPHostEntry ipHostInfo = Dns.GetHostEntry(server.server);
+                    IPHostEntry ipHostInfo = Dns.GetHostEntry(serverHost);
                     ipAddress = ipHostInfo.AddressList[0];
                 }
-                IPEndPoint remoteEP = new IPEndPoint(ipAddress, server.server_port);
+                IPEndPoint remoteEP = new IPEndPoint(ipAddress, server.proxy == "" ? server.server_port : server.proxy_port);
 
                 remote = new Socket(ipAddress.AddressFamily,
                     SocketType.Stream, ProtocolType.Tcp);
@@ -472,7 +475,10 @@ namespace Shadowsocks.Controller
                     strategy.UpdateLatency(server, latency);
                 }
 
+                if (server.proxy == "")
                 StartPipe();
+                else
+                    StartProxyConnection();
             }
             catch (ArgumentException)
             {
@@ -489,6 +495,70 @@ namespace Shadowsocks.Controller
                 }
                 Logging.LogUsefulException(e);
                 RetryConnect();
+            }
+        }
+
+        private void StartProxyConnection()
+        {
+            Logging.Debug(string.Format("Starting HTTP CONNECT to {0}:{1}", server.server, server.server_port));
+            byte[] data = Encoding.ASCII.GetBytes(string.Format("CONNECT {0}:{1} HTTP/1.0 \r\n\r\n", server.server, server.server_port));
+            remote.BeginSend(data,0,data.Length, SocketFlags.None, HTTPConnectSendCallback, null);
+        }
+
+        private void HTTPConnectSendCallback(IAsyncResult ar)
+        {
+            if (closed)
+            {
+                return;
+            }
+            try
+            {
+                remote.EndSend(ar);
+                sbHTTPReceived.Clear();
+                remote.BeginReceive(bytesHTTPReceived, 0, bytesHTTPReceived.Length, SocketFlags.None, HTTPResponseCallback, null);
+            }
+            catch (Exception e)
+            {
+                Logging.LogUsefulException(e);
+                this.Close();
+            }
+        }
+
+        private void HTTPResponseCallback(IAsyncResult ar)
+        {
+            if (closed)
+            {
+                return;
+            }
+            try
+            {
+                int received = remote.EndReceive(ar);
+                sbHTTPReceived.Append(Encoding.ASCII.GetString(bytesHTTPReceived, 0, received));
+
+                string strResponse = sbHTTPReceived.ToString();
+                if (strResponse.IndexOf("\r\n\r\n") > 0)
+                {
+                    if(strResponse.Length < 12)
+                    {
+                        throw new Exception("Proxy Reponse missing:" + strResponse);
+                    }
+
+                    //TODO check proxy response code.
+                    string strRespCode = strResponse.Substring(9, 3);
+
+                    Logging.Debug("Successfully create https tunnel");
+                    StartPipe();
+                }
+                else
+                {
+                    remote.BeginReceive(bytesHTTPReceived, 0, bytesHTTPReceived.Length, SocketFlags.None, HTTPResponseCallback, null);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Logging.LogUsefulException(e);
+                this.Close();
             }
         }
 

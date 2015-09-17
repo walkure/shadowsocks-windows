@@ -101,7 +101,8 @@ namespace Shadowsocks.View
 
         private void LogForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            timer.Stop();
+            if(timer != null)
+                timer.Stop();
         }
 
         private void OpenLocationMenuItem_Click(object sender, EventArgs e)

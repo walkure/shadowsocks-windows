@@ -39,6 +39,8 @@
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.EncryptionLabel = new System.Windows.Forms.Label();
             this.EncryptionSelect = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ProxyHostTextBox = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.OKButton = new System.Windows.Forms.Button();
             this.MyCancelButton = new System.Windows.Forms.Button();
@@ -55,6 +57,8 @@
             this.ProxyPortLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.UProxyPortTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.ServerGroupBox.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -71,6 +75,7 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.RemarksTextBox, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.RemarksLabel, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.IPLabel, 0, 0);
@@ -81,27 +86,32 @@
             this.tableLayoutPanel1.Controls.Add(this.PasswordTextBox, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.EncryptionLabel, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.EncryptionSelect, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.ProxyHostTextBox, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.UProxyPortTextBox, 1, 7);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 21);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 8;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(238, 137);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(241, 172);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // RemarksTextBox
             // 
             this.RemarksTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemarksTextBox.Location = new System.Drawing.Point(72, 111);
+            this.RemarksTextBox.Location = new System.Drawing.Point(75, 107);
             this.RemarksTextBox.MaxLength = 32;
             this.RemarksTextBox.Name = "RemarksTextBox";
-            this.RemarksTextBox.Size = new System.Drawing.Size(160, 20);
+            this.RemarksTextBox.Size = new System.Drawing.Size(160, 19);
             this.RemarksTextBox.TabIndex = 10;
             this.RemarksTextBox.WordWrap = false;
             // 
@@ -109,9 +119,9 @@
             // 
             this.RemarksLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.RemarksLabel.AutoSize = true;
-            this.RemarksLabel.Location = new System.Drawing.Point(17, 114);
+            this.RemarksLabel.Location = new System.Drawing.Point(19, 110);
             this.RemarksLabel.Name = "RemarksLabel";
-            this.RemarksLabel.Size = new System.Drawing.Size(49, 13);
+            this.RemarksLabel.Size = new System.Drawing.Size(50, 12);
             this.RemarksLabel.TabIndex = 9;
             this.RemarksLabel.Text = "Remarks";
             // 
@@ -119,9 +129,9 @@
             // 
             this.IPLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.IPLabel.AutoSize = true;
-            this.IPLabel.Location = new System.Drawing.Point(15, 9);
+            this.IPLabel.Location = new System.Drawing.Point(17, 9);
             this.IPLabel.Name = "IPLabel";
-            this.IPLabel.Size = new System.Drawing.Size(51, 13);
+            this.IPLabel.Size = new System.Drawing.Size(52, 12);
             this.IPLabel.TabIndex = 0;
             this.IPLabel.Text = "Server IP";
             // 
@@ -129,9 +139,9 @@
             // 
             this.ServerPortLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ServerPortLabel.AutoSize = true;
-            this.ServerPortLabel.Location = new System.Drawing.Point(6, 35);
+            this.ServerPortLabel.Location = new System.Drawing.Point(6, 34);
             this.ServerPortLabel.Name = "ServerPortLabel";
-            this.ServerPortLabel.Size = new System.Drawing.Size(60, 13);
+            this.ServerPortLabel.Size = new System.Drawing.Size(63, 12);
             this.ServerPortLabel.TabIndex = 1;
             this.ServerPortLabel.Text = "Server Port";
             // 
@@ -139,40 +149,40 @@
             // 
             this.PasswordLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Location = new System.Drawing.Point(13, 61);
+            this.PasswordLabel.Location = new System.Drawing.Point(15, 59);
             this.PasswordLabel.Name = "PasswordLabel";
-            this.PasswordLabel.Size = new System.Drawing.Size(53, 13);
+            this.PasswordLabel.Size = new System.Drawing.Size(54, 12);
             this.PasswordLabel.TabIndex = 2;
             this.PasswordLabel.Text = "Password";
             // 
             // IPTextBox
             // 
             this.IPTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.IPTextBox.Location = new System.Drawing.Point(72, 6);
+            this.IPTextBox.Location = new System.Drawing.Point(75, 6);
             this.IPTextBox.MaxLength = 512;
             this.IPTextBox.Name = "IPTextBox";
-            this.IPTextBox.Size = new System.Drawing.Size(160, 20);
+            this.IPTextBox.Size = new System.Drawing.Size(160, 19);
             this.IPTextBox.TabIndex = 0;
             this.IPTextBox.WordWrap = false;
             // 
             // ServerPortTextBox
             // 
             this.ServerPortTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerPortTextBox.Location = new System.Drawing.Point(72, 32);
+            this.ServerPortTextBox.Location = new System.Drawing.Point(75, 31);
             this.ServerPortTextBox.MaxLength = 10;
             this.ServerPortTextBox.Name = "ServerPortTextBox";
-            this.ServerPortTextBox.Size = new System.Drawing.Size(160, 20);
+            this.ServerPortTextBox.Size = new System.Drawing.Size(160, 19);
             this.ServerPortTextBox.TabIndex = 1;
             this.ServerPortTextBox.WordWrap = false;
             // 
             // PasswordTextBox
             // 
             this.PasswordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.PasswordTextBox.Location = new System.Drawing.Point(72, 58);
+            this.PasswordTextBox.Location = new System.Drawing.Point(75, 56);
             this.PasswordTextBox.MaxLength = 256;
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
-            this.PasswordTextBox.Size = new System.Drawing.Size(160, 20);
+            this.PasswordTextBox.Size = new System.Drawing.Size(160, 19);
             this.PasswordTextBox.TabIndex = 2;
             this.PasswordTextBox.WordWrap = false;
             // 
@@ -180,9 +190,9 @@
             // 
             this.EncryptionLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.EncryptionLabel.AutoSize = true;
-            this.EncryptionLabel.Location = new System.Drawing.Point(9, 88);
+            this.EncryptionLabel.Location = new System.Drawing.Point(10, 85);
             this.EncryptionLabel.Name = "EncryptionLabel";
-            this.EncryptionLabel.Size = new System.Drawing.Size(57, 13);
+            this.EncryptionLabel.Size = new System.Drawing.Size(59, 12);
             this.EncryptionLabel.TabIndex = 8;
             this.EncryptionLabel.Text = "Encryption";
             // 
@@ -193,7 +203,7 @@
             this.EncryptionSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EncryptionSelect.FormattingEnabled = true;
             this.EncryptionSelect.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.EncryptionSelect.ItemHeight = 13;
+            this.EncryptionSelect.ItemHeight = 12;
             this.EncryptionSelect.Items.AddRange(new object[] {
             "table",
             "rc4-md5",
@@ -203,10 +213,30 @@
             "aes-192-cfb",
             "aes-128-cfb",
             "rc4"});
-            this.EncryptionSelect.Location = new System.Drawing.Point(72, 84);
+            this.EncryptionSelect.Location = new System.Drawing.Point(75, 81);
             this.EncryptionSelect.Name = "EncryptionSelect";
-            this.EncryptionSelect.Size = new System.Drawing.Size(160, 21);
+            this.EncryptionSelect.Size = new System.Drawing.Size(160, 20);
             this.EncryptionSelect.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(35, 133);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 12);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Proxy";
+            // 
+            // ProxyHostTextBox
+            // 
+            this.ProxyHostTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProxyHostTextBox.Location = new System.Drawing.Point(75, 132);
+            this.ProxyHostTextBox.MaxLength = 512;
+            this.ProxyHostTextBox.Name = "ProxyHostTextBox";
+            this.ProxyHostTextBox.Size = new System.Drawing.Size(160, 19);
+            this.ProxyHostTextBox.TabIndex = 12;
+            this.ProxyHostTextBox.WordWrap = false;
             // 
             // panel2
             // 
@@ -276,7 +306,7 @@
             this.ServerGroupBox.Location = new System.Drawing.Point(178, 0);
             this.ServerGroupBox.Margin = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.ServerGroupBox.Name = "ServerGroupBox";
-            this.ServerGroupBox.Size = new System.Drawing.Size(249, 174);
+            this.ServerGroupBox.Size = new System.Drawing.Size(252, 208);
             this.ServerGroupBox.TabIndex = 6;
             this.ServerGroupBox.TabStop = false;
             this.ServerGroupBox.Text = "Server";
@@ -313,7 +343,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(427, 238);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(430, 272);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
             // tableLayoutPanel6
@@ -326,7 +356,7 @@
             this.tableLayoutPanel6.Controls.Add(this.MoveDownButton, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.MoveUpButton, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 211);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 240);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
@@ -369,7 +399,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel5.Controls.Add(this.ProxyPortTextBox, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.ProxyPortLabel, 0, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(241, 174);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(240, 208);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.Padding = new System.Windows.Forms.Padding(3);
@@ -379,16 +409,16 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(186, 32);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(190, 32);
             this.tableLayoutPanel5.TabIndex = 9;
             // 
             // ProxyPortTextBox
             // 
             this.ProxyPortTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ProxyPortTextBox.Location = new System.Drawing.Point(67, 6);
+            this.ProxyPortTextBox.Location = new System.Drawing.Point(71, 6);
             this.ProxyPortTextBox.MaxLength = 10;
             this.ProxyPortTextBox.Name = "ProxyPortTextBox";
-            this.ProxyPortTextBox.Size = new System.Drawing.Size(113, 20);
+            this.ProxyPortTextBox.Size = new System.Drawing.Size(113, 19);
             this.ProxyPortTextBox.TabIndex = 4;
             this.ProxyPortTextBox.WordWrap = false;
             // 
@@ -396,9 +426,9 @@
             // 
             this.ProxyPortLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ProxyPortLabel.AutoSize = true;
-            this.ProxyPortLabel.Location = new System.Drawing.Point(6, 9);
+            this.ProxyPortLabel.Location = new System.Drawing.Point(6, 10);
             this.ProxyPortLabel.Name = "ProxyPortLabel";
-            this.ProxyPortLabel.Size = new System.Drawing.Size(55, 13);
+            this.ProxyPortLabel.Size = new System.Drawing.Size(59, 12);
             this.ProxyPortLabel.TabIndex = 3;
             this.ProxyPortLabel.Text = "Proxy Port";
             // 
@@ -413,7 +443,7 @@
             this.tableLayoutPanel3.Controls.Add(this.MyCancelButton, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.OKButton, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(268, 209);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(271, 243);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
@@ -431,13 +461,33 @@
             this.tableLayoutPanel4.Controls.Add(this.DeleteButton, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.AddButton, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 174);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 208);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.Size = new System.Drawing.Size(166, 32);
             this.tableLayoutPanel4.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 153);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 12);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Proxy Port";
+            // 
+            // UProxyPortTextBox
+            // 
+            this.UProxyPortTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.UProxyPortTextBox.Location = new System.Drawing.Point(75, 152);
+            this.UProxyPortTextBox.MaxLength = 10;
+            this.UProxyPortTextBox.Name = "UProxyPortTextBox";
+            this.UProxyPortTextBox.Size = new System.Drawing.Size(160, 19);
+            this.UProxyPortTextBox.TabIndex = 14;
+            this.UProxyPortTextBox.WordWrap = false;
             // 
             // ConfigForm
             // 
@@ -505,6 +555,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Button MoveDownButton;
         private System.Windows.Forms.Button MoveUpButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox ProxyHostTextBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox UProxyPortTextBox;
     }
 }
 

@@ -82,7 +82,9 @@ namespace Shadowsocks.View
                     server_port = int.Parse(ServerPortTextBox.Text),
                     password = PasswordTextBox.Text,
                     method = EncryptionSelect.Text,
-                    remarks = RemarksTextBox.Text
+                    remarks = RemarksTextBox.Text,
+                    proxy = ProxyHostTextBox.Text,
+                    proxy_port = int.Parse(UProxyPortTextBox.Text)
                 };
                 int localPort = int.Parse(ProxyPortTextBox.Text);
                 Configuration.CheckServer(server);
@@ -115,6 +117,8 @@ namespace Shadowsocks.View
                 ProxyPortTextBox.Text = _modifiedConfiguration.localPort.ToString();
                 EncryptionSelect.Text = server.method ?? "aes-256-cfb";
                 RemarksTextBox.Text = server.remarks;
+                ProxyHostTextBox.Text = server.proxy;
+                UProxyPortTextBox.Text = server.proxy_port.ToString();
             }
         }
 

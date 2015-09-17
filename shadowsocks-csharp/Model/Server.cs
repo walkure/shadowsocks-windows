@@ -17,6 +17,8 @@ namespace Shadowsocks.Model
         public string password;
         public string method;
         public string remarks;
+        public string proxy;
+        public int proxy_port;
 
         public override int GetHashCode()
         {
@@ -52,6 +54,8 @@ namespace Shadowsocks.Model
             this.method = "aes-256-cfb";
             this.password = "";
             this.remarks = "";
+            this.proxy = "";
+            this.proxy_port = 8080;
         }
 
         public Server(string ssURL) : this()
